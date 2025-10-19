@@ -143,14 +143,14 @@ int main() {
 
         int prob;
 
-       
+        // 40% - someone gets served
         prob = rand() % 100 + 1;
         if (prob <= 40 && !line.isEmpty()) {
             cout << "\t" << line.get_front() << " is served" << endl;
             line.pop_front();
         }
 
-        
+        // 60% - new customer joins end
         prob = rand() % 100 + 1;
         if (prob <= 60) {
             string newName = names[rand() % nameCount];
@@ -158,21 +158,21 @@ int main() {
             line.push_back(newName);
         }
 
-        
+        // 20% - rear customer leaves
         prob = rand() % 100 + 1;
         if (prob <= 20 && !line.isEmpty()) {
             cout << "\t" << line.get_back() << " (at the rear) left the line" << endl;
             line.pop_back();
         }
 
-        
+        // 10% - random customer leaves
         prob = rand() % 100 + 1;
         if (prob <= 10 && !line.isEmpty()) {
             cout << "\tA random customer left the line" << endl;
             line.delete_random();
         }
 
-        
+        // 10% - VIP joins front
         prob = rand() % 100 + 1;
         if (prob <= 10) {
             string vipName = names[rand() % nameCount];
