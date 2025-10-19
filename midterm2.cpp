@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <fstream>
 using namespace std;
 
 const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
@@ -93,16 +94,23 @@ public:
 
 int main() {
     DoublyLinkedList list;
+    ifstream infile("names.txt");
 
+    if (!infile) {
+        cout << "Error: could not open names.txt" << endl;
+        return 1;
+    }
 
-    list.push_back("Jean");
-    list.push_back("Iris");
-    list.push_back("Omar");
-    list.push_back("Andy");
-    list.push_back("Drew");
+    string name;
+    while (getline(infile, name)) {
+        list.push_back(name);
+    }
 
-    cout << "Initial list of names: ";
+    cout << "All names from file inserted successfully." << endl;
+
+    cout << "Displaying all names:\n";
     list.print();
 
     return 0;
 }
+
