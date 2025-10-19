@@ -1,6 +1,9 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <vector>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
@@ -93,7 +96,8 @@ public:
 };
 
 int main() {
-    DoublyLinkedList list;
+    srand(time(0)); 
+    DoublyLinkedList line; 
     ifstream infile("names.txt");
 
     if (!infile) {
@@ -101,16 +105,26 @@ int main() {
         return 1;
     }
 
+   
+    vector<string> names;
     string name;
     while (getline(infile, name)) {
-        list.push_back(name);
+        names.push_back(name);
     }
 
-    cout << "All names from file inserted successfully." << endl;
+    cout << "Store opens:\n";
 
-    cout << "Displaying all names:\n";
-    list.print();
+    
+    for (int i = 0; i < 5; i++) {
+        string randomName = names[rand() % names.size()];
+        line.push_back(randomName);
+        cout << "    " << randomName << " joins the line" << endl;
+    }
+
+    cout << "Resulting line:\n    ";
+    line.print();
 
     return 0;
 }
+
 
