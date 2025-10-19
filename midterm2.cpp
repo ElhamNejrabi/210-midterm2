@@ -96,8 +96,7 @@ public:
 };
 
 int main() {
-    srand(time(0)); 
-    DoublyLinkedList line; 
+    DoublyLinkedList list;
     ifstream infile("names.txt");
 
     if (!infile) {
@@ -105,26 +104,31 @@ int main() {
         return 1;
     }
 
-   
     vector<string> names;
     string name;
     while (getline(infile, name)) {
         names.push_back(name);
     }
+    infile.close();
 
-    cout << "Store opens:\n";
+   
+    srand(time(0));
+
+    cout << "Store opens:" << endl;
 
     
-    for (int i = 0; i < 5; i++) {
-        string randomName = names[rand() % names.size()];
-        line.push_back(randomName);
-        cout << "    " << randomName << " joins the line" << endl;
+    for (int i = 0; i < 5; ++i) {
+        int randomIndex = rand() % names.size();
+        string customer = names[randomIndex];
+        cout << "    " << customer << " joins the line" << endl;
+        list.push_back(customer);
     }
 
-    cout << "Resulting line:\n    ";
-    line.print();
+    cout << "Resulting line:" << endl;
+    list.print();
 
     return 0;
 }
+
 
 
